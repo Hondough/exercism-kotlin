@@ -5,6 +5,5 @@ val rnaToDna: Map<Char, Char> = hashMapOf(
     'A' to 'U'
 )
 
-fun transcribeToRna(dna: String): String {
-	return dna.map { rnaToDna.get(it) } .joinToString("")
-}
+fun transcribeToRna(dna: String) = dna.map { rnaToDna.get(it) } .joinToString("")
+
