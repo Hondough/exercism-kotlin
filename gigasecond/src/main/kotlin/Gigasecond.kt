@@ -1,9 +1,14 @@
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-class Gigasecond(birthDateTime: LocalDateTime) {
+class Gigasecond(dateIn: Any) {
 
-    constructor(birthDate: LocalDate) : this(birthDate.atStartOfDay()) 
+    val birthDateTime = 
+        when(dateIn) {
+            is LocalDate -> dateIn.atStartOfDay()
+            is LocalDateTime -> dateIn
+            else -> throw IllegalArgumentException("input date needs to be LocalDate or LocalDateTime")
+        }
 
     val gigasecond = 1_000_000_000L
 
