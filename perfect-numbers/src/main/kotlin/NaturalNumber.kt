@@ -3,13 +3,14 @@ enum class Classification {
     DEFICIENT, PERFECT, ABUNDANT
 }
 
-fun Int.isNotNaturalNumber(): Boolean = this < 1
-fun Int.aliquotSum(): Int = (1 until this).filter { f -> this % f == 0 } .sum()
+fun Int.isNaturalNumber(): Boolean = this > 0
+fun Int.aliquotSum(): Int = (1 .. this / 2).filter { f -> this % f == 0 } .sum()
 
-fun classify(naturalNumber: Int): Classification =
-    when {
-        naturalNumber.isNotNaturalNumber()         -> throw IllegalArgumentException()
-        naturalNumber.aliquotSum() < naturalNumber -> Classification.DEFICIENT
-        naturalNumber.aliquotSum() > naturalNumber -> Classification.ABUNDANT
-        else                                       -> Classification.PERFECT
+fun classify(naturalNumber: Int): Classification {
+    require(naturalNumber.isNaturalNumber())
+    return when(naturalNumber.aliquotSum().compareTo(naturalNumber)) {
+        -1   -> Classification.DEFICIENT
+        1    -> Classification.ABUNDANT
+        else -> Classification.PERFECT
     }
+}
