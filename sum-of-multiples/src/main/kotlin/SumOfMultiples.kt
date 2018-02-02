@@ -1,6 +1,6 @@
 object SumOfMultiples {
     fun sum(multiples: Set<Int>, limit: Int): Int =
-        multiples.flatMap { ( it until limit step it) }
-            .distinct()
-            .sum()
+      ((multiples.min() ?: limit) until limit)
+          .filter { i -> multiples.any { i % it == 0 } }
+          .sum()
 }
