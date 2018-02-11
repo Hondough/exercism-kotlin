@@ -7,10 +7,10 @@ class Series(val series: String) {
     fun getLargestProduct(n: Int): Int {
         require(n >= 0 && n <= series.length)
 
-        return (0 .. series.length - n)
-            .map { series.subSequence(it, it + n)
-                .map(Character::getNumericValue)
-                .fold (1) { acc, i -> acc * i } }
-            .max() ?: -1
+        return if (n == 0) 1 
+        else series.map(Character::getNumericValue)
+            .windowed(n)
+            .map { it.reduce { acc, i -> acc * i } }
+            .max() ?: 1
     }
 }
