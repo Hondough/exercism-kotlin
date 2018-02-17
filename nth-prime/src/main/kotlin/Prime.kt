@@ -3,7 +3,6 @@ import kotlin.coroutines.experimental.buildSequence
 
 object Prime {
 
-    fun Int.max(that: Int) = if (this > that) this else that
     fun Int.sqrt() = Math.sqrt(this.toDouble()).toInt()
 
     fun nth(n: Int): Int {
