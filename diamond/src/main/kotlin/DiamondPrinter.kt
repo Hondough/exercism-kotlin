@@ -2,7 +2,7 @@ class DiamondPrinter {
 
     val alphabet = ('A' .. 'Z')
 
-    // val blend: (ReversableAndDropable) -> ReversableAndDropable = { half -> half + half.reversed().drop(1) }
+    fun <T>blend(half: Collection<T>) = half + half.reversed().drop(1) 
 
     fun printToList(char: Char): List<String> {
         val chars = ('A' .. char)
@@ -10,10 +10,10 @@ class DiamondPrinter {
 
         val formatLine: (Int, Char) -> String = { i, c ->
             val half = " ".repeat(len - (i + 1)) + c + " ".repeat(i)
-            half + half.reversed().drop(1)
+            blend(half.toList().joinToString("")
         }
 
         val half = chars.mapIndexed(formatLine)
-        return half + half.reversed().drop(1)
+        return blend(half)
     }
 }
