@@ -9,11 +9,11 @@ class DiamondPrinter {
         val len = chars.count()
 
         val formatLine: (Int, Char) -> String = { i, c ->
-            val half = " ".repeat(len - (i + 1)) + c + " ".repeat(i)
-            blend(half.toList().joinToString("")
+            val left = " ".repeat(len - (i + 1)) + c + " ".repeat(i)
+            blend(left.toList()).joinToString("")
         }
 
-        val half = chars.mapIndexed(formatLine)
-        return blend(half)
+        val top = chars.mapIndexed(formatLine)
+        return blend(top)
     }
 }
