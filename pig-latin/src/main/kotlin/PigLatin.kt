@@ -15,4 +15,8 @@ object PigLatin {
             else -> s.drop(1) + s.first()
         } + "ay"
     }
+
+    // val anslatetray: (String) -> String = { s ->
+    //     s.dropWhile { c -> !vowels.any { it == c } } + s.takeWhile { c -> !vowels.any { it == c } } + "ay"
+    // }
 }
